@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import Icon from './Icon';
-import getBalance , { getAddress } from '../utils/getBalance';
 import { win, loss, error, canceled } from '../utils/modals';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ethers } from 'ethers';
 import Hat from '../artifacts/contracts/Hat.sol/Hat.json';
+import { fetchAccount } from '../Redux/reducers/accountReducer';
 
 const Chapeau = () => {
+    const dispatch = useDispatch();
+
     useEffect(async () => {
-        setBalance(await getBalance());
-        setAddress(await getAddress());
+        dispatch(fetchAccount());
     }, []);
 
-    const [balance, setBalance] = useState('Loading...');
-    const [address, setAddress] = useState('Loading...');
+    const balance = useSelector((state) => state.account.balance);
+    const address = useSelector((state) => state.account.address);
 
-    const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+    const contractAddress = '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707';
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const signer = provider.getSigner();
@@ -32,8 +33,10 @@ const Chapeau = () => {
             await contract.payToPlay(addr, {
                 value: ethers.utils.parseEther('0.005'),
             });
+            return true;
         } catch(e) {
             console.log(e);
+            return false;
         }
     };
 

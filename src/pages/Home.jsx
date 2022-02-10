@@ -3,6 +3,7 @@ import hats from '../utils/hats';
 import shuffle from '../utils/shuffle';
 import HatCard from '../components/HatCard';
 import Chapeau from '../components/Chapeau';
+import { v4 as uuidv4 } from 'uuid';
 
 const Home = () => {
     useEffect(() => {
@@ -26,7 +27,7 @@ const Home = () => {
                 gap-4'
             style={{borderWidth: '50px'}}>
                 {shuffle(hats).map((hat) => (
-            <HatCard hat = {hat} />
+            <HatCard hat = {hat} key = {uuidv4()} />
             ))}
             </div>
         </>

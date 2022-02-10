@@ -22,3 +22,8 @@ body {
         transition-all;
     }
   }
+
+.semi-modal-footer {
+  visibility: hidden !important;
+  margin: 0 !important
+}
