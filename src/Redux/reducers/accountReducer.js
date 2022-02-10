@@ -19,13 +19,12 @@ export const loadAccountSuccess = (payload) => ({
 });
 
 export const fetchAccount = () => async (dispatch) => {
-    dispatch(loadAccount);
-    const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const balanceRaw = await provider.getBalance(account);
-    const balance = ethers.utils.formatEther(balanceRaw);
-    console.log(balance);
-    dispatch(loadAccountSuccess([balance, account]));
+  dispatch(loadAccount);
+  const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const balanceRaw = await provider.getBalance(account);
+  const balance = ethers.utils.formatEther(balanceRaw);
+  dispatch(loadAccountSuccess([balance, account]));
 };
 
 const accountReducer = (state = initialState, action) => {

@@ -5,7 +5,7 @@ import accountReducer from './reducers/accountReducer';
 
 const rootReducer = combineReducers({
   hats: hatsReducer,
-  account: accountReducer
+  account: accountReducer,
 });
 
 const store = createStore(

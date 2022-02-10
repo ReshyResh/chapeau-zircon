@@ -1,15 +1,13 @@
-const hre = require("hardhat");
+const hre = require('hardhat');
 
 async function main() {
-
-  const Hat = await hre.ethers.getContractFactory("Hat");
+  const Hat = await hre.ethers.getContractFactory('Hat');
   const hat = await Hat.deploy();
 
   await hat.deployed();
 
-  console.log("Contract deployed to:", hat.address);
+  console.log('Contract deployed to:', hat.address);
 }
-
 
 main()
   .then(() => process.exit(0))
