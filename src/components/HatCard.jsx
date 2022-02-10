@@ -11,12 +11,13 @@ const HatCard = (props) => {
     const dispatch = useDispatch();
 
     return (
-      <button className='max-w-64'>
+        <div className='max-w-64'>
             <Card
-                className= {`h-64 shadow-xl ${selected_hat === hat ? ' bg-purple-200 !text-white' : 'bg-white'}`}
+                className= {`w-full flex justify-center flex-col h-64 shadow-xl ${selected_hat === hat ? ' bg-purple-200 !text-white' : 'bg-white'}`}
                 headerLine={ false }
                 cover={<Icon color = {hat.color}/>}
             >
+            <div className='flex justify-center'>
             {selected_hat === hat ? 
                 <button className = 'btn-select' 
                         onClick={() => dispatch(resetHat())}> 
@@ -25,12 +26,13 @@ const HatCard = (props) => {
                 <button className = 'btn-select' 
                         onClick={() => dispatch(selectHat(hat))}> 
                         Select this hat 
-                </button> 
+                 </button>
             }
+            </div> 
         </Card>
             
 
-      </button>
+      </div>
   
   );
 };

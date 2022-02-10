@@ -14,13 +14,13 @@ const Home = () => {
             <Chapeau />
             </div>
             <div 
-            className='p-16 
+            className='p-14 
                 rounded-xl 
                 grid 
                 grid-cols-3 
                 w-full 
                 mx-auto 
-                mt-20 
+                mt-4 
                 border-solid 
                 border-white 
                 gap-4'
