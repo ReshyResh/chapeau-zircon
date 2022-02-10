@@ -7,4 +7,9 @@ const getBalance = async () => {
     return ethers.utils.formatEther(balance);
 };
 
+export const getAddress = async () => {
+    const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    return account;
+}
+
 export default getBalance;
