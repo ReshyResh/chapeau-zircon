@@ -1,6 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import logger from 'redux-logger';
-import thunk from 'redux-thunk';
+import { combineReducers, createStore } from 'redux';
 import hatsReducer from './reducers/hatsReducer';
 
 const rootReducer = combineReducers({
@@ -9,7 +7,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(logger, thunk),
 );
 
 export default store;
