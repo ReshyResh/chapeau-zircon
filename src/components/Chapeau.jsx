@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ethers } from 'ethers';
 import Hat from '../artifacts/contracts/Hat.sol/Hat.json';
 import { fetchAccount } from '../Redux/reducers/accountReducer';
+import { contractAddress } from '../utils/contractAddr';
 
 const Chapeau = () => {
     const dispatch = useDispatch();
@@ -16,7 +17,6 @@ const Chapeau = () => {
     const balance = useSelector((state) => state.account.balance);
     const address = useSelector((state) => state.account.address);
 
-    const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const signer = provider.getSigner();
