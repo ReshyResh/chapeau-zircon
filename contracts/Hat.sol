@@ -44,10 +44,6 @@ contract Hat is ERC721, ERC721URIStorage, Ownable {
         return super.tokenURI(tokenId);
     }
 
-    function isContentOwned(string memory uri) public view returns (bool) {
-        return existingNames[uri] == 1;
-    }
-
     function mint(
         address to,
         uint256 tokenId,
