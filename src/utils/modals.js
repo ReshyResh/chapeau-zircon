@@ -9,3 +9,6 @@ export const loss = () => {
 export const error = () => {
     Modal.error({ 'title': "Please select a hat first!", 'content': '' });
 }
+export const canceled = () => {
+    Modal.error({ 'title': "You have canceled the transaction!", 'content': '' });
+}
