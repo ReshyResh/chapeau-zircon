@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import hats from '../utils/hats';
 import shuffle from '../utils/shuffle';
 import HatCard from '../components/HatCard';

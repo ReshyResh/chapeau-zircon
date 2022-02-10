@@ -10,20 +10,20 @@ const HatCard = (props) => {
     const selected_hat = useSelector((state) => state.hats.selected_hat);
     const dispatch = useDispatch();
 
-  return (
+    return (
       <button className='max-w-64'>
             <Card
-                className= {`h-64 shadow-xl ${selected_hat === hat.color ? ' bg-purple-200 !text-white' : 'bg-white'}`}
+                className= {`h-64 shadow-xl ${selected_hat === hat ? ' bg-purple-200 !text-white' : 'bg-white'}`}
                 headerLine={ false }
                 cover={<Icon color = {hat.color}/>}
             >
-            {selected_hat === hat.color ? 
+            {selected_hat === hat ? 
                 <button className = 'btn-select' 
                         onClick={() => dispatch(resetHat())}> 
                         Unselect 
                 </button> :
                 <button className = 'btn-select' 
-                        onClick={() => dispatch(selectHat(hat.color))}> 
+                        onClick={() => dispatch(selectHat(hat))}> 
                         Select this hat 
                 </button> 
             }
