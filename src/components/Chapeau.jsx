@@ -16,7 +16,7 @@ const Chapeau = () => {
     const balance = useSelector((state) => state.account.balance);
     const address = useSelector((state) => state.account.address);
 
-    const contractAddress = '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707';
+    const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const signer = provider.getSigner();
