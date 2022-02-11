@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Icon from './Icon';
 import { win, loss, error, canceled } from '../utils/modals';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,13 +6,17 @@ import { ethers } from 'ethers';
 import Hat from '../artifacts/contracts/Hat.sol/Hat.json';
 import { fetchAccount } from '../Redux/reducers/accountReducer';
 import { contractAddress } from '../utils/contractAddr';
+import { pay, mintToken } from '../utils/contractAction';
 
 const Chapeau = () => {
     const dispatch = useDispatch();
 
-    useEffect(async () => {
-        dispatch(fetchAccount());
-    }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            await dispatch(fetchAccount());
+        }
+        fetchData();
+    }, [dispatch]);
 
     const balance = useSelector((state) => state.account.balance);
     const address = useSelector((state) => state.account.address);
@@ -25,30 +29,7 @@ const Chapeau = () => {
     
     const winner_hat = useSelector((state) => state.hats.winner_hat);
     const selected_hat = useSelector((state) => state.hats.selected_hat);
-
-    const pay = async () => {
-        const connection = contract.connect(signer);
-        const addr = connection.address;
-        try {
-            await contract.payToPlay(addr, {
-                value: ethers.utils.parseEther('0.005'),
-            });
-            return true;
-        } catch(e) {
-            console.log(e);
-            return false;
-        }
-    };
-
-    const mintToken = async (id, name, color) => {
-        const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        try {
-            await contract.mint(account, id, name, color);
-        } catch(e) {
-            window.alert(`Error! ${e.data.message}`);
-        }
-    };
-
+    
   return (
     <div>
         <Icon 
@@ -63,7 +44,10 @@ const Chapeau = () => {
             Winning a hat has never been so easy....
         </h2>
         <button 
-        onClick={(async () => selected_hat ? await pay() ? (selected_hat == winner_hat ? (win(),mintToken(selected_hat.id, selected_hat.name, selected_hat.color)) : loss()) : canceled() : error()
+        onClick={(async () => selected_hat ? await pay(contract, signer) ? 
+            (selected_hat === winner_hat ? (win(),mintToken(selected_hat.id, selected_hat.name, selected_hat.color, contract)) : loss())
+            : canceled() 
+            : error()
         )}
         className='rounded-full text-white bg-red-500 w-36 h-10 mb-4'>
             Start Lottery

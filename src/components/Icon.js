@@ -20,10 +20,10 @@ const Icon = (props) => {
 };
 
 Icon.propTypes = {
-  rotated: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  w: PropTypes.string.isRequired,
-  h: PropTypes.string.isRequired,
+  rotated: PropTypes.string,
+  color: PropTypes.string,
+  w: PropTypes.string,
+  h: PropTypes.string,
 };
 
 export default Icon;
