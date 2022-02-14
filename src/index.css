@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #e9e3f1;
+}
+
+@layer components {
+    .btn-select {
+      @apply 
+        py-2 
+        px-4 
+        bg-white  
+        font-semibold 
+        border-2
+        border-violet-600
+        rounded-full 
+        shadow-md 
+        hover:bg-slate-300 
+        focus:outline-none
+        transition-all;
+    }
+  }
+
+.semi-modal-footer {
+  visibility: hidden !important;
+  margin: 0 !important
+}
